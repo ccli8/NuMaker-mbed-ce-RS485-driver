@@ -20,7 +20,7 @@ int NvtRS485::set_rs485_mode(PinName dir)
     lock();
     
     //Implement RS485-AUD mode for various platform of Nuvoton
-#if defined(TARGET_NUMAKER_PFM_NUC472)    
+#if defined(TARGET_NUMAKER_PFM_NUC472) || defined(TARGET_NUMAKER_PFM_M453)
     /*
     Program Sequence example:
      1. Program FUNCSEL in UART_FUNCSEL to select RS-485 function.
@@ -46,8 +46,6 @@ int NvtRS485::set_rs485_mode(PinName dir)
     uart_base->ALTCTL  = (uart_base->ALTCTL & ~UART_ALTCTL_RS485AUD_Msk) | UART_ALTCTL_RS485AUD_Msk;
     uart_base->MODEM = (uart_base->MODEM & ~UART_MODEM_RTSACTLV_Msk);
     uart_base->FIFO = (uart_base->FIFO & ~UART_FIFO_RTSTRGLV_Msk) | (0x2 << UART_FIFO_RTSTRGLV_Pos);
- 
-//#elif defined(TARGET_NUMAKER_PFM_M453)
  
 #else
     #error "Unknown platform."
