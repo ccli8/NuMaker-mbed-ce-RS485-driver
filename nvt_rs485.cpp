@@ -20,7 +20,7 @@ int NvtRS485::set_rs485_mode(PinName dir)
     lock();
     
     //Implement RS485-AUD mode for various platform of Nuvoton
-#if defined(TARGET_NUMAKER_PFM_NUC472) || defined(TARGET_NUMAKER_PFM_M453)
+#if defined(TARGET_NUMAKER_PFM_NUC472) || defined(TARGET_NUMAKER_PFM_M453) || defined(TARGET_NUMAKER_PFM_M487)
     /*
     Program Sequence example:
      1. Program FUNCSEL in UART_FUNCSEL to select RS-485 function.
