@@ -1,8 +1,12 @@
 #include "nvt_rs485.h"
 #include "PeripheralPins.h"
-
+#if MBED_MAJOR_VERSION >= 6
+NvtRS485::NvtRS485(PinName tx, PinName rx, PinName dir)
+    : MyUnbufferedSerial(tx, rx)
+#else
 NvtRS485::NvtRS485(PinName tx, PinName rx, PinName dir)
     : Serial(tx, rx)
+#endif
 {
     this->set_rs485_mode(dir);
 }
